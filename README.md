@@ -69,12 +69,14 @@ executor >  local (4)
 
 After the tasks are finished (maybe 7 or 30 minutes depending on the number of CPUs on the VM), you'll find the combined CLPP/CLPA and coloc.susie results in the current directory. Data about the run is in the `pipeline_info` directory under the current directory.
 
-To run the workflow with more data in the cloud instead of locally, modify [coloc.config](coloc.config) according to the data you want to run. Set these env variables (see [nextflow.config](nextflow.config)):
+To run the workflow with more data in the cloud instead of locally, modify [coloc.config](coloc.config) according to the data you want to run. Also set these env variables (see [nextflow.config](nextflow.config)):
 
 ```
 export GOOGLE_WORKDIR="gs://[BUCKET_TO_KEEP_TASK_LOGS_AND_OUTPUTS_IN]"
 export GOOGLE_PROJECT="[YOUR_GOOGLE_PROJECT]"
 ```
+
+Launch the workflow with the `gls` profile instead of `local` profile:
 
 ```bash
 nextflow run coloc.nf -c coloc.config -profile gls -resume
